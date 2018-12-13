@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemon.Web", "Lemon.Web\Lemon.Web.csproj", "{BA18C7A3-AE4D-4FF0-B9CD-5E5876705D13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lemon.Core", "Lemon.Core\Lemon.Core.csproj", "{B9A028D6-DB50-46FF-B862-369CFF29E70C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemon.Core", "Lemon.Core\Lemon.Core.csproj", "{B9A028D6-DB50-46FF-B862-369CFF29E70C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lemon.Infrastructure", "Lemon.Infrastructure\Lemon.Infrastructure.csproj", "{B621C372-0CC1-4284-A6A9-76D8A0C00162}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B9A028D6-DB50-46FF-B862-369CFF29E70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A028D6-DB50-46FF-B862-369CFF29E70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A028D6-DB50-46FF-B862-369CFF29E70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B621C372-0CC1-4284-A6A9-76D8A0C00162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B621C372-0CC1-4284-A6A9-76D8A0C00162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B621C372-0CC1-4284-A6A9-76D8A0C00162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B621C372-0CC1-4284-A6A9-76D8A0C00162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
