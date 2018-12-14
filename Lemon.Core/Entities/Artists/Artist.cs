@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lemon.Core.Entities.Artists
 {
-    public class Artist : BaseEntity
+    public abstract class Artist : BaseEntity
     {
     }
 }
