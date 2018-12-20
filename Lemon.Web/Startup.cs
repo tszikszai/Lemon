@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Lemon.Web
 {
@@ -30,6 +31,16 @@ namespace Lemon.Web
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info
+                {
+                    Title = "Lemon API",
+                    Description = "Lemon API",
+                    Version = "v1"
+                });
             });
         }
 
@@ -56,6 +67,9 @@ namespace Lemon.Web
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Lemon API"));
 
             app.UseSpa(spa =>
             {
