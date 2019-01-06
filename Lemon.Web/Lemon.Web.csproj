@@ -26,6 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\band\band.service.ts" />
+    <None Remove="ClientApp\src\app\band\band.ts" />
+    <None Remove="ClientApp\src\app\band\bands.component.ts" />
+    <None Remove="ClientApp\src\app\http-error-handler.service.ts" />
+    <None Remove="ClientApp\src\app\message.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\counter\" />
     <Folder Include="ClientApp\src\app\fetch-data\" />
     <Folder Include="ClientApp\src\app\nav-menu\" />
@@ -34,6 +42,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Lemon.Core\Lemon.Core.csproj" />
     <ProjectReference Include="..\Lemon.Infrastructure\Lemon.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\band\band.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\band\band.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\band\bands.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\http-error-handler.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\message.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

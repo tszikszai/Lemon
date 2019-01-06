@@ -1,0 +1,20 @@
+<h1>Bands</h1>
+
+<p *ngIf="!bands"><em>Loading...</em></p>
+
+<table *ngIf="bands" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active From</th>
+      <th>Active To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let band of bands">
+      <td>{{ band.name }}</td>
+      <td>{{ band.activeFromYear }}</td>
+      <td>{{ band.activeToYear }}</td>
+    </tr>
+  </tbody>
+</table>
