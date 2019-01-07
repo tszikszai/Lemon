@@ -34,8 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\counter\" />
-    <Folder Include="ClientApp\src\app\fetch-data\" />
     <Folder Include="ClientApp\src\app\nav-menu\" />
   </ItemGroup>
 
