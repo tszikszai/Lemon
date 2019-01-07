@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lemon.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/bands")]
     public class BandController : Controller
     {
         private readonly IAsyncRepository<Band> _bandRepository;
@@ -21,7 +21,7 @@ namespace Lemon.Web.Controllers
             _bandRepository = bandRepository;
         }
 
-        // GET: api/<controller>
+        // GET: api/bands
         [HttpGet]
         public async Task<IEnumerable<BandViewModel>> Get()
         {
@@ -35,7 +35,7 @@ namespace Lemon.Web.Controllers
             });
         }
 
-        // GET api/<controller>/5
+        // GET api/bands/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -55,7 +55,7 @@ namespace Lemon.Web.Controllers
             return Ok(bandViewModel);
         }
 
-        // POST api/<controller>
+        // POST api/bands
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]BandViewModel value)
         {
@@ -81,7 +81,7 @@ namespace Lemon.Web.Controllers
             return Ok(bandViewModel);
         }
 
-        // PUT api/<controller>/5
+        // PUT api/bands/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]BandViewModel value)
         {
@@ -103,7 +103,7 @@ namespace Lemon.Web.Controllers
             return Ok();
         }
 
-        // DELETE api/<controller>/5
+        // DELETE api/bands/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

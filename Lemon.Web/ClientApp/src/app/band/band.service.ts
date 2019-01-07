@@ -17,8 +17,8 @@ const httpOptions = {
 export class BandService {
   private handleError: HandleError;
 
-  get bandUrl(): string {
-    return this.baseUrl + 'api/Band';
+  get bandsUrl(): string {
+    return this.baseUrl + 'api/bands';
   }
 
   constructor(
@@ -29,14 +29,14 @@ export class BandService {
   }
 
   getBands(): Observable<Band[]> {
-    return this.http.get<Band[]>(this.bandUrl)
+    return this.http.get<Band[]>(this.bandsUrl)
       .pipe(
         catchError<Band[], Band[]>(this.handleError('getBands', []))
       );
   }
 
   getBand(id: number): Observable<Band> {
-    const url = `${this.bandUrl}/${id}`;
+    const url = `${this.bandsUrl}/${id}`;
     return this.http.get<Band>(url)
       .pipe(
         catchError<Band, Band>(this.handleError('getBand', <Band>{}))
@@ -44,21 +44,21 @@ export class BandService {
   }
 
   addBand(band: Band): Observable<Band> {
-    return this.http.post<Band>(this.bandUrl, band, httpOptions)
+    return this.http.post<Band>(this.bandsUrl, band, httpOptions)
       .pipe(
         catchError<Band, Band>(this.handleError('addBand', band))
       );
   }
 
   updateBand(band: Band): Observable<Band> {
-    return this.http.put<Band>(this.bandUrl, band, httpOptions)
+    return this.http.put<Band>(this.bandsUrl, band, httpOptions)
       .pipe(
         catchError<Band, Band>(this.handleError('updateBand', band))
       );
   }
 
   deleteBand(id: number): Observable<{}> {
-    const url = `${this.bandUrl}/${id}`;
+    const url = `${this.bandsUrl}/${id}`;
     return this.http.delete(url)
       .pipe(
         catchError(this.handleError('deleteBand'))
