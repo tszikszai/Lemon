@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Lemon.Core.Entities.Artists;
 using Lemon.Core.Interfaces;
 using Lemon.Web.ViewModels;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,39 +26,27 @@ namespace Lemon.Web.Controllers
         [HttpGet]
         public async Task<IEnumerable<BandViewModel>> Get()
         {
-            var bands = await _bandRepository.GetAllAsync();
-            return bands.Select(x => new BandViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ActiveFromYear = x.ActiveFromYear,
-                ActiveToYear = x.ActiveToYear
-            });
+            IReadOnlyList<Band> bands = await _bandRepository.GetAllAsync();
+            return bands.Adapt<IEnumerable<BandViewModel>>();
         }
 
         // GET api/bands/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var band = await _bandRepository.GetByIdAsync(id);
+            Band band = await _bandRepository.GetByIdAsync(id);
             if (band == null)
             {
                 return NotFound();
             }
 
-            var bandViewModel = new BandViewModel
-            {
-                Id = band.Id,
-                Name = band.Name,
-                ActiveFromYear = band.ActiveFromYear,
-                ActiveToYear = band.ActiveToYear
-            };
+            BandViewModel bandViewModel = band.Adapt<BandViewModel>();
             return Ok(bandViewModel);
         }
 
         // POST api/bands
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]BandViewModel value)
+        public async Task<IActionResult> Post([FromBody]BandViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -66,54 +55,52 @@ namespace Lemon.Web.Controllers
 
             var band = new Band
             {
-                Name = value.Name,
-                ActiveFromYear = value.ActiveFromYear,
-                ActiveToYear = value.ActiveToYear
+                Name = model.Name,
+                ActiveFromYear = model.ActiveFromYear,
+                ActiveToYear = model.ActiveToYear
             };
             await _bandRepository.AddAsync(band);
-            var bandViewModel = new BandViewModel
-            {
-                Id = band.Id,
-                Name = band.Name,
-                ActiveFromYear = band.ActiveFromYear,
-                ActiveToYear = band.ActiveToYear
-            };
+
+            BandViewModel bandViewModel = band.Adapt<BandViewModel>();
             return Ok(bandViewModel);
         }
 
         // PUT api/bands/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]BandViewModel value)
+        public async Task<IActionResult> Put(int id, [FromBody]BandViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var band = await _bandRepository.GetByIdAsync(id);
+            Band band = await _bandRepository.GetByIdAsync(id);
             if (band == null)
             {
                 return NotFound();
             }
 
-            band.Name = value.Name;
-            band.ActiveFromYear = value.ActiveFromYear;
-            band.ActiveToYear = value.ActiveToYear;
+            band.Name = model.Name;
+            band.ActiveFromYear = model.ActiveFromYear;
+            band.ActiveToYear = model.ActiveToYear;
             await _bandRepository.UpdateAsync(band);
-            return Ok();
+
+            BandViewModel bandViewModel = band.Adapt<BandViewModel>();
+            return Ok(bandViewModel);
         }
 
         // DELETE api/bands/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var band = await _bandRepository.GetByIdAsync(id);
+            Band band = await _bandRepository.GetByIdAsync(id);
             if (band == null)
             {
                 return NotFound();
             }
 
             await _bandRepository.DeleteAsync(band);
+
             return Ok();
         }
     }
