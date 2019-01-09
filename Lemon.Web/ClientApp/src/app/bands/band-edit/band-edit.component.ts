@@ -6,8 +6,7 @@ import { BandService } from '../band.service';
 
 @Component({
   selector: 'app-band-edit',
-  templateUrl: './band-edit.component.html',
-  providers: [ BandService ]
+  templateUrl: './band-edit.component.html'
 })
 export class BandEditComponent implements OnInit {
   band: Band;

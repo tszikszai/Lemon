@@ -5,8 +5,7 @@ import { BandService } from '../band.service';
 
 @Component({
   selector: 'app-band-list',
-  templateUrl: './band-list.component.html',
-  providers: [ BandService ]
+  templateUrl: './band-list.component.html'
 })
 export class BandListComponent implements OnInit {
   bands: Band[];

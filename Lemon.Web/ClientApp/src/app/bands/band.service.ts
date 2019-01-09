@@ -13,7 +13,9 @@ const httpOptions = {
   })
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BandService {
   private handleError: HandleError;
 

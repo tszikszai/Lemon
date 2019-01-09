@@ -11,10 +11,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './app-routing.module';
 import { BandsModule } from './bands/bands.module';
 
-import { HttpErrorHandler } from './http-error-handler.service';
-import { MessageService } from './message.service';
-
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,10 +24,6 @@ import { MessageService } from './message.service';
     NavMenuComponent,
     HomeComponent,
     PageNotFoundComponent
-  ],
-  providers: [
-    HttpErrorHandler,
-    MessageService
   ],
   bootstrap: [ AppComponent ]
 })
