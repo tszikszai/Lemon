@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let band of bands">
-      <td>{{ band.name }}</td>
+      <td><a [routerLink]="['/bands', band.id]">{{ band.name }}</a></td>
       <td>{{ band.activeFromYear }}</td>
       <td>{{ band.activeToYear }}</td>
     </tr>

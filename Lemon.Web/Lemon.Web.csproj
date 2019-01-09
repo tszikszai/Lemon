@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\band\band-edit.component.ts" />
     <None Remove="ClientApp\src\app\band\band.service.ts" />
     <None Remove="ClientApp\src\app\band\band.ts" />
     <None Remove="ClientApp\src\app\band\bands.component.ts" />
@@ -44,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\band\band-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\band\band.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\band\band.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\band\bands.component.ts" />
