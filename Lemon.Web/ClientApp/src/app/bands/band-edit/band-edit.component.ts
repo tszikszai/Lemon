@@ -34,4 +34,8 @@ export class BandEditComponent implements OnInit {
     this.bandService.getBand(id)
       .subscribe(band => this.band = band);
   }
+
+  onBack() {
+    this.router.navigate(['/bands']);
+  }
 }
