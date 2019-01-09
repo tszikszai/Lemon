@@ -33,6 +33,7 @@
     <None Remove="ClientApp\src\app\band\bands.component.ts" />
     <None Remove="ClientApp\src\app\http-error-handler.service.ts" />
     <None Remove="ClientApp\src\app\message.service.ts" />
+    <None Remove="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +52,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\band\bands.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\http-error-handler.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\message.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

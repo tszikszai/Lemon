@@ -11,6 +11,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BandsComponent } from './band/bands.component';
 import { BandEditComponent } from './band/band-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BandEditComponent } from './band/band-edit.component';
     NavMenuComponent,
     HomeComponent,
     BandsComponent,
-    BandEditComponent
+    BandEditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
