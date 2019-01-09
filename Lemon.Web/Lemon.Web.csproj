@@ -22,15 +22,20 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\band\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\band\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\band\band-edit.component.ts" />
-    <None Remove="ClientApp\src\app\band\band.service.ts" />
-    <None Remove="ClientApp\src\app\band\band.ts" />
-    <None Remove="ClientApp\src\app\band\bands.component.ts" />
+    <EmbeddedResource Remove="ClientApp\src\app\band\**" />
+    <None Remove="ClientApp\src\app\band\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\bands\bands-routing.module.ts" />
+    <None Remove="ClientApp\src\app\bands\bands.module.ts" />
     <None Remove="ClientApp\src\app\http-error-handler.service.ts" />
     <None Remove="ClientApp\src\app\message.service.ts" />
     <None Remove="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
@@ -46,10 +51,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\band\band-edit.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\band\band.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\band\band.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\band\bands.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\bands\bands-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\bands\bands.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\http-error-handler.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\message.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\page-not-found\page-not-found.component.ts" />

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Band } from './band';
-import { BandService } from './band.service';
+import { Band } from '../band';
+import { BandService } from '../band.service';
 
 @Component({
-  selector: 'bands',
-  templateUrl: './bands.component.html',
+  selector: 'app-band-list',
+  templateUrl: './band-list.component.html',
   providers: [ BandService ]
 })
-export class BandsComponent implements OnInit {
+export class BandListComponent implements OnInit {
   bands: Band[];
 
   constructor(private bandService: BandService) { }
