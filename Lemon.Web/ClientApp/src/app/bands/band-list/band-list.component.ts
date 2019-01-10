@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Band } from '../band';
 import { BandService } from '../band.service';
@@ -10,7 +11,9 @@ import { BandService } from '../band.service';
 export class BandListComponent implements OnInit {
   bands: Band[];
 
-  constructor(private bandService: BandService) { }
+  constructor(
+    private router: Router,
+    private bandService: BandService) { }
 
   ngOnInit() {
     this.getBands();
@@ -19,5 +22,9 @@ export class BandListComponent implements OnInit {
   getBands() {
     this.bandService.getBands()
       .subscribe(bands => this.bands = bands);
+  }
+
+  onCreate() {
+    this.router.navigate(['/bands/create']);
   }
 }

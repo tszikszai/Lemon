@@ -53,7 +53,8 @@ export class BandService {
   }
 
   updateBand(band: Band): Observable<Band> {
-    return this.http.put<Band>(this.bandsUrl, band, httpOptions)
+    const url = `${this.bandsUrl}/${band.id}`;
+    return this.http.put<Band>(url, band, httpOptions)
       .pipe(
         catchError<Band, Band>(this.handleError('updateBand', band))
       );

@@ -6,6 +6,7 @@ import { BandEditComponent } from './band-edit/band-edit.component';
 
 const routes: Routes = [
   { path: 'bands', component: BandListComponent },
+  { path: 'bands/create', component: BandEditComponent },
   { path: 'bands/:id', component: BandEditComponent }
 ];
 

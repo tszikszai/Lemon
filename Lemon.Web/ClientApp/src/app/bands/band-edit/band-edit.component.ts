@@ -35,7 +35,31 @@ export class BandEditComponent implements OnInit {
       .subscribe(band => this.band = band);
   }
 
-  onBack() {
+  onSubmit() {
+    if (this.isEditing) {
+      this.bandService.updateBand(this.band)
+        .subscribe(band => this.navigateToBandList());
+    }
+    else {
+      this.bandService.addBand(this.band)
+        .subscribe(band => this.navigateToBandList());
+    }
+  }
+
+  onCancel() {
+    this.navigateToBandList();
+  }
+
+  onDelete() {
+    if (!confirm('Do you really want to delete this band?')) {
+      return;
+    }
+
+    this.bandService.deleteBand(this.band.id)
+      .subscribe(() => this.navigateToBandList());
+  }
+
+  navigateToBandList() {
     this.router.navigate(['/bands']);
   }
 }
