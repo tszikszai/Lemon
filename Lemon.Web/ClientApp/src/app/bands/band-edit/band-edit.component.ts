@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { Band } from '../band';
 import { BandService } from '../band.service';
 import { rangeValidator } from '../../shared/range-validator.directive';
+import { lowerThanOrEqualToValidator } from '../../shared/lower-than-or-equal-to-validator.directive';
 
 @Component({
   selector: 'app-band-edit',
@@ -63,7 +64,7 @@ export class BandEditComponent implements OnInit {
         rangeValidator(1900, this.currentYear)
         ]
       ]
-    });
+    }, { validators: lowerThanOrEqualToValidator('activeFromYear', 'activeToYear') });
   }
 
   updateForm() {
