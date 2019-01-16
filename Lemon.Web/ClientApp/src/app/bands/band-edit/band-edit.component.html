@@ -12,18 +12,20 @@
 
   <div class="form-group">
     <label for="activeFromYear">Active from Year</label>
-    <input type="number" id="activeFromYear" class="form-control" formControlName="activeFromYear" required />
+    <input type="number" id="activeFromYear" class="form-control" formControlName="activeFromYear" required min="1900" max="{{ currentYear }}" />
     <div *ngIf="hasError('activeFromYear')" class="alert alert-danger">
       <div *ngIf="getError('activeFromYear', 'required')">Active from Year is required.</div>
       <div *ngIf="getError('activeFromYear', 'pattern')">Active from Year must be an integer.</div>
+      <div *ngIf="getError('activeFromYear', 'range')">Active from Year must be between 1900 and {{ currentYear }}.</div>
     </div>
   </div>
 
   <div class="form-group">
     <label for="activeToYear">Active to Year</label>
-    <input type="number" id="activeToYear" class="form-control" formControlName="activeToYear" />
+    <input type="number" id="activeToYear" class="form-control" formControlName="activeToYear" min="1900" max="{{ currentYear }}" />
     <div *ngIf="hasError('activeToYear')" class="alert alert-danger">
       <div *ngIf="getError('activeToYear', 'pattern')">Active to Year must be an integer.</div>
+      <div *ngIf="getError('activeToYear', 'range')">Active to Year must be between 1900 and {{ currentYear }}.</div>
     </div>
   </div>
 

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 
 import { Band } from '../band';
 import { BandService } from '../band.service';
+import { rangeValidator } from '../../shared/range-validator.directive';
 
 @Component({
   selector: 'app-band-edit',
@@ -13,6 +14,8 @@ export class BandEditComponent implements OnInit {
   form: FormGroup;
   band: Band;
   isEditing: boolean;
+
+  currentYear: number = new Date().getFullYear();
 
   constructor(
     private route: ActivatedRoute,
@@ -51,10 +54,15 @@ export class BandEditComponent implements OnInit {
       ],
       activeFromYear: ['', [
         Validators.required,
-        Validators.pattern(/^\d*$/)
+        Validators.pattern(/^\d*$/),
+        rangeValidator(1900, this.currentYear)
         ]
       ],
-      activeToYear: ['', Validators.pattern(/^\d*$/)]
+      activeToYear: ['', [
+        Validators.pattern(/^\d*$/),
+        rangeValidator(1900, this.currentYear)
+        ]
+      ]
     });
   }
 

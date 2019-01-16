@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lemon.Web.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace Lemon.Web.ViewModels
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+        [RangeUntilCurrentYear(1900)]
         public int ActiveFromYear { get; set; }
+        [RangeUntilCurrentYear(1900)]
         public int? ActiveToYear { get; set; }
     }
 }
