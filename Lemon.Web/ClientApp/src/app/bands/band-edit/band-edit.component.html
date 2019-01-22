@@ -1,5 +1,11 @@
 <h1>Band</h1>
 
+<div *ngIf="messageService.messages.length > 0" class="alert alert-danger">
+  <ul>
+    <li *ngFor="let message of messageService.messages">{{ message }}</li>
+  </ul>
+</div>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div *ngIf="(form.dirty || form.touched) && !hasError('activeFromYear') && !hasError('activeToYear') && form.errors?.lowerThanOrEqualTo" class="alert alert-danger">
     Active from Year must be lower than or equal to Active to Year.

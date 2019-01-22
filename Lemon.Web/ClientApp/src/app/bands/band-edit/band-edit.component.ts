@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 
 import { Band } from '../band';
 import { BandService } from '../band.service';
+import { MessageService } from '../../message.service';
 import { rangeValidator } from '../../shared/range-validator.directive';
 import { lowerThanOrEqualToValidator } from '../../shared/lower-than-or-equal-to-validator.directive';
 
@@ -22,7 +23,8 @@ export class BandEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private bandService: BandService) {
+    private bandService: BandService,
+    private messageService: MessageService) {
     this.band = <Band>{};
   }
 
@@ -76,14 +78,15 @@ export class BandEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.messageService.clear();
     let band = this.createBandFromFormValues();
     if (this.isEditing) {
       this.bandService.updateBand(band)
-        .subscribe(b => this.navigateToBandList());
+        .subscribe(() => this.navigateToBandList());
     }
     else {
       this.bandService.addBand(band)
-        .subscribe(b => this.navigateToBandList());
+        .subscribe(() => this.navigateToBandList());
     }
   }
 
@@ -106,6 +109,8 @@ export class BandEditComponent implements OnInit {
     if (!confirm('Do you really want to delete this band?')) {
       return;
     }
+
+    this.messageService.clear();
 
     this.bandService.deleteBand(this.band.id)
       .subscribe(() => this.navigateToBandList());
