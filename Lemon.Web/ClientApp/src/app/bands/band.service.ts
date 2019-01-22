@@ -33,7 +33,7 @@ export class BandService {
   getBands(): Observable<Band[]> {
     return this.http.get<Band[]>(this.bandsUrl)
       .pipe(
-        catchError<Band[], Band[]>(this.handleError('getBands', []))
+        catchError<Band[], Band[]>(this.handleError('getBands'))
       );
   }
 
@@ -41,14 +41,14 @@ export class BandService {
     const url = `${this.bandsUrl}/${id}`;
     return this.http.get<Band>(url)
       .pipe(
-        catchError<Band, Band>(this.handleError('getBand', <Band>{}))
+        catchError<Band, Band>(this.handleError('getBand'))
       );
   }
 
   addBand(band: Band): Observable<Band> {
     return this.http.post<Band>(this.bandsUrl, band, httpOptions)
       .pipe(
-        catchError<Band, Band>(this.handleError('addBand', band))
+        catchError<Band, Band>(this.handleError('addBand'))
       );
   }
 
@@ -56,7 +56,7 @@ export class BandService {
     const url = `${this.bandsUrl}/${band.id}`;
     return this.http.put<Band>(url, band, httpOptions)
       .pipe(
-        catchError<Band, Band>(this.handleError('updateBand', band))
+        catchError<Band, Band>(this.handleError('updateBand'))
       );
   }
 

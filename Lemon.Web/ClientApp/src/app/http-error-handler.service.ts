@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { MessageService } from './message.service';
 
 /** Type of the handleError function returned by HttpErrorHandler.createHandleError */
-export type HandleError =
-  <T> (operation?: string, result?: T) => (error: HttpErrorResponse) => Observable<T>;
+export type HandleError = (operation?: string) => (error: HttpErrorResponse) => Observable<never>;
 
 /** Handles HttpClient errors */
 @Injectable({
@@ -17,28 +16,36 @@ export class HttpErrorHandler {
   constructor(private messageService: MessageService) { }
 
   /** Create curried handleError function that already knows the service name */
-  createHandleError = (serviceName = '') => <T>
-    (operation = 'operation', result = {} as T) => this.handleError(serviceName, operation, result);
+  createHandleError = (serviceName = '') => (operation = 'operation') => this.handleError(serviceName, operation);
 
   /**
    * Returns a function that handles Http operation failures.
-   * This error handler lets the app continue to run as if no error occurred.
    * @param serviceName = name of the data service that attempted the operation
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
+   * @param operation = name of the operation that failed
    */
-  handleError<T>(serviceName = '', operation = 'operation', result = {} as T) {
-    return (error: HttpErrorResponse): Observable<T> => {
+  handleError(serviceName = '', operation = 'operation') {
+    return (error: HttpErrorResponse): Observable<never> => {
+      console.error(`${serviceName}: ${operation} failed`);
       console.error(error);
 
-      const message = (error.error instanceof ErrorEvent) ?
-        error.error.message :
-        `Server returned code ${error.status} with body "${error.error}"`;
+      if (error.error instanceof ErrorEvent) {
+        this.messageService.add(`An error occurred: ${error.error.message}`);
+      }
+      else {
+        if (error.status === 400) {
+          let validationErrorDictionary = error.error;
+          for (var fieldName in validationErrorDictionary) {
+            if (validationErrorDictionary.hasOwnProperty(fieldName)) {
+              this.messageService.add(validationErrorDictionary[fieldName]);
+            }
+          }
+        }
+        else {
+          this.messageService.add('An error occurred; please try again later.');
+        }
+      }
 
-      this.messageService.add(`${serviceName}: ${operation} failed: ${message}`);
-
-      // Let the app keep running by returning a safe result.
-      return of(result);
+      return throwError('An error occurred; please try again later.');
     };
   }
 }
