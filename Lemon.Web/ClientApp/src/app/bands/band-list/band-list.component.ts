@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Band } from '../band';
 import { BandService } from '../band.service';
+import { MessageService } from '../../message.service';
 
 @Component({
   selector: 'app-band-list',
@@ -13,15 +14,20 @@ export class BandListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private bandService: BandService) { }
+    private bandService: BandService,
+    private messageService: MessageService) { }
 
   ngOnInit() {
+    this.messageService.clear();
     this.getBands();
   }
 
   getBands() {
     this.bandService.getBands()
-      .subscribe(bands => this.bands = bands);
+      .subscribe(
+        bands => this.bands = bands,
+        () => this.bands = []
+      );
   }
 
   onCreate() {

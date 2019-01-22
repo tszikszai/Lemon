@@ -29,6 +29,7 @@ export class BandEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.messageService.clear();
     this.createForm();
     let id: number = +this.route.snapshot.paramMap.get('id');
     if (id) {

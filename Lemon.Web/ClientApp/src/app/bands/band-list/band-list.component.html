@@ -2,6 +2,12 @@
 
 <p *ngIf="!bands"><em>Loading...</em></p>
 
+<div *ngIf="messageService.messages.length > 0" class="alert alert-danger">
+  <ul>
+    <li *ngFor="let message of messageService.messages">{{ message }}</li>
+  </ul>
+</div>
+
 <table *ngIf="bands" class="table">
   <thead>
     <tr>
