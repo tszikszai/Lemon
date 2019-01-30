@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { AppRoutingModule } from './app-routing.module';
 import { BandsModule } from './bands/bands.module';
+import { MusiciansModule } from './musicians/musicians.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { BandsModule } from './bands/bands.module';
     FormsModule,
     ReactiveFormsModule,
     BandsModule,
+    MusiciansModule,
     AppRoutingModule
   ],
   declarations: [

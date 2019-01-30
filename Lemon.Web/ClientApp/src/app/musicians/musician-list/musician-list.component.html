@@ -1,0 +1,29 @@
+<h1>Musicians</h1>
+
+<p *ngIf="!musicians"><em>Loading...</em></p>
+
+<div *ngIf="messageService.messages.length > 0" class="alert alert-danger">
+  <ul>
+    <li *ngFor="let message of messageService.messages">{{ message }}</li>
+  </ul>
+</div>
+
+<table *ngIf="musicians" class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Date of Birth</th>
+      <th>Date of Death</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let musician of musicians">
+      <td><a [routerLink]="['/musicians', musician.id]">{{ musician.firstName }}</a></td>
+      <td><a [routerLink]="['/musicians', musician.id]">{{ musician.lastName }}</a></td>
+      <td>{{ musician.dateOfBirth | date }}</td>
+      <td>{{ musician.dateOfDeath | date }}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" (click)="onCreate()">Create</button>
