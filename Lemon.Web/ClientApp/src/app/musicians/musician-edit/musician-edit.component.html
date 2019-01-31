@@ -1,0 +1,48 @@
+<h1>Musician</h1>
+
+<div *ngIf="messageService.messages.length > 0" class="alert alert-danger">
+  <ul>
+    <li *ngFor="let message of messageService.messages">{{ message }}</li>
+  </ul>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" class="form-control" formControlName="firstName" required maxlength="50" />
+    <div *ngIf="hasError('firstName')" class="alert alert-danger">
+      <div *ngIf="getError('firstName', 'required')">First Name is required.</div>
+      <div *ngIf="getError('firstName', 'maxlength')">First Name must be at most 50 characters long.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" class="form-control" formControlName="lastName" required maxlength="50" />
+    <div *ngIf="hasError('lastName')" class="alert alert-danger">
+      <div *ngIf="getError('lastName', 'required')">Last Name is required.</div>
+      <div *ngIf="getError('lastName', 'maxlength')">Last Name must be at most 50 characters long.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="dateOfBirth">Date of Birth</label>
+    <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth" required />
+    <div *ngIf="hasError('dateOfBirth')" class="alert alert-danger">
+      <div *ngIf="getError('dateOfBirth', 'required')">Date of Birth is required.</div>
+      <div *ngIf="getError('dateOfBirth', 'dateRange')">Date of Birth must be between {{ minDate | date }} and {{ today | date }}.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="dateOfDeath">Date of Death</label>
+    <input type="date" id="dateOfDeath" class="form-control" formControlName="dateOfDeath" />
+    <div *ngIf="hasError('dateOfDeath')" class="alert alert-danger">
+      <div *ngIf="getError('dateOfDeath', 'dateRange')">Date of Death must be between {{ minDate | date }} and {{ today | date }}.</div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>&nbsp;
+  <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+  <button *ngIf="isEditing" type="button" class="btn btn-danger pull-right" (click)="onDelete()">Delete</button>
+</form>

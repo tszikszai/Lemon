@@ -39,12 +39,14 @@
     <None Remove="ClientApp\src\app\bands\bands.module.ts" />
     <None Remove="ClientApp\src\app\http-error-handler.service.ts" />
     <None Remove="ClientApp\src\app\message.service.ts" />
+    <None Remove="ClientApp\src\app\musicians\musician-edit\musician-edit.component.ts" />
     <None Remove="ClientApp\src\app\musicians\musician-list\musician-list.component.ts" />
     <None Remove="ClientApp\src\app\musicians\musician.service.ts" />
     <None Remove="ClientApp\src\app\musicians\musician.ts" />
     <None Remove="ClientApp\src\app\musicians\musicians-routing.module.ts" />
     <None Remove="ClientApp\src\app\musicians\musicians.module.ts" />
     <None Remove="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
+    <None Remove="ClientApp\src\app\shared\date-range-validator.directive.ts" />
     <None Remove="ClientApp\src\app\shared\lower-than-or-equal-to-validator.directive.ts" />
     <None Remove="ClientApp\src\app\shared\range-validator.directive.ts" />
   </ItemGroup>
@@ -63,12 +65,14 @@
     <TypeScriptCompile Include="ClientApp\src\app\bands\bands.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\http-error-handler.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\message.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\musicians\musician-edit\musician-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\musicians\musician-list\musician-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\musicians\musician.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\musicians\musician.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\musicians\musicians-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\musicians\musicians.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\date-range-validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\lower-than-or-equal-to-validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\range-validator.directive.ts" />
   </ItemGroup>
