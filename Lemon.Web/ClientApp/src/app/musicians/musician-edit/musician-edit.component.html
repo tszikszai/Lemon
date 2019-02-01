@@ -27,18 +27,18 @@
 
   <div class="form-group">
     <label for="dateOfBirth">Date of Birth</label>
-    <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth" required />
+    <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth" required min="{{ dateTimeService.minimumDateString }}" max="{{ dateTimeService.todayString }}" />
     <div *ngIf="hasError('dateOfBirth')" class="alert alert-danger">
       <div *ngIf="getError('dateOfBirth', 'required')">Date of Birth is required.</div>
-      <div *ngIf="getError('dateOfBirth', 'dateRange')">Date of Birth must be between {{ minDate | date }} and {{ today | date }}.</div>
+      <div *ngIf="getError('dateOfBirth', 'dateRange')">Date of Birth must be between {{ dateTimeService.minimumDate | date }} and {{ dateTimeService.today | date }}.</div>
     </div>
   </div>
 
   <div class="form-group">
     <label for="dateOfDeath">Date of Death</label>
-    <input type="date" id="dateOfDeath" class="form-control" formControlName="dateOfDeath" />
+    <input type="date" id="dateOfDeath" class="form-control" formControlName="dateOfDeath" min="{{ dateTimeService.minimumDateString }}" max="{{ dateTimeService.todayString }}" />
     <div *ngIf="hasError('dateOfDeath')" class="alert alert-danger">
-      <div *ngIf="getError('dateOfDeath', 'dateRange')">Date of Death must be between {{ minDate | date }} and {{ today | date }}.</div>
+      <div *ngIf="getError('dateOfDeath', 'dateRange')">Date of Death must be between {{ dateTimeService.minimumDate | date }} and {{ dateTimeService.today | date }}.</div>
     </div>
   </div>
 

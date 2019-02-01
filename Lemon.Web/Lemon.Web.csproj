@@ -47,6 +47,7 @@
     <None Remove="ClientApp\src\app\musicians\musicians.module.ts" />
     <None Remove="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
     <None Remove="ClientApp\src\app\shared\date-range-validator.directive.ts" />
+    <None Remove="ClientApp\src\app\shared\date-time.service.ts" />
     <None Remove="ClientApp\src\app\shared\lower-than-or-equal-to-validator.directive.ts" />
     <None Remove="ClientApp\src\app\shared\range-validator.directive.ts" />
   </ItemGroup>
@@ -73,6 +74,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\musicians\musicians.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\date-range-validator.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\date-time.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\lower-than-or-equal-to-validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\range-validator.directive.ts" />
   </ItemGroup>

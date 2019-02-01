@@ -1,8 +1,10 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export function dateRangeValidator(minimum: Date, maximum: Date): ValidatorFn {
+import * as moment from 'moment';
+
+export function dateRangeValidator(minimum: moment.Moment, maximum: moment.Moment): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    let isOutOfRange: boolean = control.value != null && control.value !== '' && (new Date(control.value) < minimum || new Date(control.value) > maximum);
+    let isOutOfRange: boolean = control.value != null && control.value !== '' && (!moment(control.value).isBetween(minimum, maximum, null, '[]'));
     return isOutOfRange ? { 'dateRange': { value: control.value } } : null;
   }
 }

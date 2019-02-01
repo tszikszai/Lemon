@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 
 import { Musician } from '../musician';
 import { MusicianService } from '../musician.service';
 import { MessageService } from '../../message.service';
+import { DateTimeService } from '../../shared/date-time.service';
 import { dateRangeValidator } from '../../shared/date-range-validator.directive';
 
 @Component({
@@ -17,15 +17,13 @@ export class MusicianEditComponent implements OnInit {
   musician: Musician;
   isEditing: boolean;
 
-  minDate: Date = new Date(1900, 1, 1);
-  today: Date = new Date();
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private musicianService: MusicianService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private dateTimeService: DateTimeService) {
     this.musician = <Musician>{};
   }
 
@@ -64,22 +62,19 @@ export class MusicianEditComponent implements OnInit {
       ],
       dateOfBirth: ['', [
         Validators.required,
-        dateRangeValidator(this.minDate, this.today)
+        dateRangeValidator(this.dateTimeService.minimumDate, this.dateTimeService.today)
         ]
       ],
-      dateOfDeath: ['', dateRangeValidator(this.minDate, this.today)]
+      dateOfDeath: ['', dateRangeValidator(this.dateTimeService.minimumDate, this.dateTimeService.today)]
     });
   }
 
   updateForm() {
-    let datePipe = new DatePipe(navigator.language);
-    const dateFormat = 'yyyy-MM-dd';
-
     this.form.setValue({
       firstName: this.musician.firstName,
       lastName: this.musician.lastName,
-      dateOfBirth: datePipe.transform(this.musician.dateOfBirth, dateFormat),
-      dateOfDeath: datePipe.transform(this.musician.dateOfDeath || '', dateFormat)
+      dateOfBirth: this.dateTimeService.formatDateForDateInput(this.musician.dateOfBirth),
+      dateOfDeath: this.dateTimeService.formatDateForDateInput(this.musician.dateOfDeath)
     });
   }
 
