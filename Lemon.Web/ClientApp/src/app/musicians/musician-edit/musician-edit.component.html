@@ -7,6 +7,10 @@
 </div>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div *ngIf="(form.dirty || form.touched) && !hasError('dateOfBirth') && !hasError('dateOfDeath') && form.errors?.dateBeforeOrSame" class="alert alert-danger">
+    Date of Birth must be prior to Date of Death.
+  </div>
+
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input type="text" id="firstName" class="form-control" formControlName="firstName" required maxlength="50" />

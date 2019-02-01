@@ -7,6 +7,7 @@ import { MusicianService } from '../musician.service';
 import { MessageService } from '../../message.service';
 import { DateTimeService } from '../../shared/date-time.service';
 import { dateRangeValidator } from '../../shared/date-range-validator.directive';
+import { dateBeforeOrSameValidator } from '../../shared/date-before-or-same-validator.directive';
 
 @Component({
   selector: 'app-musician-edit',
@@ -66,7 +67,7 @@ export class MusicianEditComponent implements OnInit {
         ]
       ],
       dateOfDeath: ['', dateRangeValidator(this.dateTimeService.minimumDate, this.dateTimeService.today)]
-    });
+    }, { validators: dateBeforeOrSameValidator('dateOfBirth', 'dateOfDeath') });
   }
 
   updateForm() {
