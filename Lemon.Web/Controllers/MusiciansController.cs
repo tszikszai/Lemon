@@ -47,11 +47,6 @@ namespace Lemon.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]MusicianViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var musician = new Musician
             {
                 FirstName = model.FirstName,
@@ -62,7 +57,7 @@ namespace Lemon.Web.Controllers
             await _musicianRepository.AddAsync(musician);
 
             MusicianViewModel musicianViewModel = musician.Adapt<MusicianViewModel>();
-            return Ok(musicianViewModel);
+            return CreatedAtAction(nameof(Get), new { id = musician.Id }, musicianViewModel);
         }
 
         // PUT api/musicians/5

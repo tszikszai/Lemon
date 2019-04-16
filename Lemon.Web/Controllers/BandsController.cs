@@ -47,11 +47,6 @@ namespace Lemon.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]BandViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var band = new Band
             {
                 Name = model.Name,
@@ -61,7 +56,7 @@ namespace Lemon.Web.Controllers
             await _bandRepository.AddAsync(band);
 
             BandViewModel bandViewModel = band.Adapt<BandViewModel>();
-            return Ok(bandViewModel);
+            return CreatedAtAction(nameof(Get), new { id = band.Id }, bandViewModel);
         }
 
         // PUT api/bands/5
