@@ -29,7 +29,7 @@ namespace Lemon.Web
 
             services.AddDbContext<LemonContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LemonConnection")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
