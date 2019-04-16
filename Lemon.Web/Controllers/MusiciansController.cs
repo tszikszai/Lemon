@@ -96,7 +96,7 @@ namespace Lemon.Web.Controllers
 
             await _musicianRepository.DeleteAsync(musician);
 
-            return Ok();
+            return NoContent();
         }
     }
 }
