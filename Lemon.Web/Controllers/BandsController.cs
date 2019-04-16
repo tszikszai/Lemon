@@ -12,12 +12,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lemon.Web.Controllers
 {
-    [Route("api/bands")]
-    public class BandController : Controller
+    public class BandsController : LemonControllerBase
     {
         private readonly IAsyncRepository<Band> _bandRepository;
 
-        public BandController(IAsyncRepository<Band> bandRepository)
+        public BandsController(IAsyncRepository<Band> bandRepository)
         {
             _bandRepository = bandRepository;
         }
