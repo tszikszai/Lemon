@@ -52,11 +52,11 @@ export class MusicianService {
       );
   }
 
-  updateMusician(musician: Musician): Observable<Musician> {
+  updateMusician(musician: Musician): Observable<{}> {
     const url = `${this.musiciansUrl}/${musician.id}`;
     return this.http.put<Musician>(url, musician, httpOptions)
       .pipe(
-        catchError<Musician, Musician>(this.handleError('updateMusician'))
+        catchError(this.handleError('updateMusician'))
       );
   }
 

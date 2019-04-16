@@ -64,9 +64,9 @@ namespace Lemon.Web.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]MusicianViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (id != model.Id)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             Musician musician = await _musicianRepository.GetByIdAsync(id);
@@ -81,8 +81,7 @@ namespace Lemon.Web.Controllers
             musician.DateOfDeath = model.DateOfDeath;
             await _musicianRepository.UpdateAsync(musician);
 
-            MusicianViewModel musicianViewModel = musician.Adapt<MusicianViewModel>();
-            return Ok(musicianViewModel);
+            return NoContent();
         }
 
         // DELETE api/musicians/5

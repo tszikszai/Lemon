@@ -63,9 +63,9 @@ namespace Lemon.Web.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]BandViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (id != model.Id)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             Band band = await _bandRepository.GetByIdAsync(id);
@@ -79,8 +79,7 @@ namespace Lemon.Web.Controllers
             band.ActiveToYear = model.ActiveToYear;
             await _bandRepository.UpdateAsync(band);
 
-            BandViewModel bandViewModel = band.Adapt<BandViewModel>();
-            return Ok(bandViewModel);
+            return NoContent();
         }
 
         // DELETE api/bands/5
