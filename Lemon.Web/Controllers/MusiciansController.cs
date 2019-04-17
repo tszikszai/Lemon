@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lemon.Core.Entities.Artists;
 using Lemon.Core.Interfaces;
+using Lemon.Web.Infrastructure;
 using Lemon.Web.ViewModels;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
@@ -31,16 +32,12 @@ namespace Lemon.Web.Controllers
 
         // GET api/musicians/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [ValidateMusicianExists]
+        public async Task<MusicianViewModel> Get(int id)
         {
             Musician musician = await _musicianRepository.GetByIdAsync(id);
-            if (musician == null)
-            {
-                return NotFound();
-            }
-
             MusicianViewModel musicianViewModel = musician.Adapt<MusicianViewModel>();
-            return Ok(musicianViewModel);
+            return musicianViewModel;
         }
 
         // POST api/musicians
@@ -62,6 +59,7 @@ namespace Lemon.Web.Controllers
 
         // PUT api/musicians/5
         [HttpPut("{id}")]
+        [ValidateMusicianExists]
         public async Task<IActionResult> Put(int id, [FromBody]MusicianViewModel model)
         {
             if (id != model.Id)
@@ -70,11 +68,6 @@ namespace Lemon.Web.Controllers
             }
 
             Musician musician = await _musicianRepository.GetByIdAsync(id);
-            if (musician == null)
-            {
-                return NotFound();
-            }
-
             musician.FirstName = model.FirstName;
             musician.LastName = model.LastName;
             musician.DateOfBirth = model.DateOfBirth;
@@ -86,16 +79,11 @@ namespace Lemon.Web.Controllers
 
         // DELETE api/musicians/5
         [HttpDelete("{id}")]
+        [ValidateMusicianExists]
         public async Task<IActionResult> Delete(int id)
         {
             Musician musician = await _musicianRepository.GetByIdAsync(id);
-            if (musician == null)
-            {
-                return NotFound();
-            }
-
             await _musicianRepository.DeleteAsync(musician);
-
             return NoContent();
         }
     }

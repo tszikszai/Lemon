@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lemon.Core.Entities.Artists;
 using Lemon.Core.Interfaces;
+using Lemon.Web.Infrastructure;
 using Lemon.Web.ViewModels;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
@@ -31,16 +32,12 @@ namespace Lemon.Web.Controllers
 
         // GET api/bands/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [ValidateBandExists]
+        public async Task<BandViewModel> Get(int id)
         {
             Band band = await _bandRepository.GetByIdAsync(id);
-            if (band == null)
-            {
-                return NotFound();
-            }
-
             BandViewModel bandViewModel = band.Adapt<BandViewModel>();
-            return Ok(bandViewModel);
+            return bandViewModel;
         }
 
         // POST api/bands
@@ -61,6 +58,7 @@ namespace Lemon.Web.Controllers
 
         // PUT api/bands/5
         [HttpPut("{id}")]
+        [ValidateBandExists]
         public async Task<IActionResult> Put(int id, [FromBody]BandViewModel model)
         {
             if (id != model.Id)
@@ -69,11 +67,6 @@ namespace Lemon.Web.Controllers
             }
 
             Band band = await _bandRepository.GetByIdAsync(id);
-            if (band == null)
-            {
-                return NotFound();
-            }
-
             band.Name = model.Name;
             band.ActiveFromYear = model.ActiveFromYear;
             band.ActiveToYear = model.ActiveToYear;
@@ -84,16 +77,11 @@ namespace Lemon.Web.Controllers
 
         // DELETE api/bands/5
         [HttpDelete("{id}")]
+        [ValidateBandExists]
         public async Task<IActionResult> Delete(int id)
         {
             Band band = await _bandRepository.GetByIdAsync(id);
-            if (band == null)
-            {
-                return NotFound();
-            }
-
             await _bandRepository.DeleteAsync(band);
-
             return NoContent();
         }
     }

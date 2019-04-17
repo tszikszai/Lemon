@@ -75,5 +75,15 @@ namespace Lemon.Infrastructure.Data
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+        public bool Exists(int id)
+        {
+            return _dbContext.Set<T>().Any(x => x.Id == id);
+        }
+
+        public async Task<bool> ExistsAsync(int id)
+        {
+            return await _dbContext.Set<T>().AnyAsync(x => x.Id == id);
+        }
     }
 }
