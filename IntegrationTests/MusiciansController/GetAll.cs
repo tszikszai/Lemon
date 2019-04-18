@@ -22,7 +22,7 @@ namespace IntegrationTests.MusiciansController
         }
 
         [Fact]
-        public async Task ReturnsAllAuthors()
+        public async Task ReturnsAllMusicians()
         {
             HttpResponseMessage response = await _client.GetAsync($"{BaseUrl}");
             response.EnsureSuccessStatusCode();
