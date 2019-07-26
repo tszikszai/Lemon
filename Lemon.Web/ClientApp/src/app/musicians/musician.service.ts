@@ -33,7 +33,7 @@ export class MusicianService {
   getMusicians(): Observable<Musician[]> {
     return this.http.get<Musician[]>(this.musiciansUrl)
       .pipe(
-        catchError<Musician[], Musician[]>(this.handleError('getMusicians'))
+        catchError(this.handleError('getMusicians'))
       );
   }
 
@@ -41,14 +41,14 @@ export class MusicianService {
     const url = `${this.musiciansUrl}/${id}`;
     return this.http.get<Musician>(url)
       .pipe(
-        catchError<Musician, Musician>(this.handleError('getMusician'))
+        catchError(this.handleError('getMusician'))
       );
   }
 
   addMusician(musician: Musician): Observable<Musician> {
     return this.http.post<Musician>(this.musiciansUrl, musician, httpOptions)
       .pipe(
-        catchError<Musician, Musician>(this.handleError('addMusician'))
+        catchError(this.handleError('addMusician'))
       );
   }
 
